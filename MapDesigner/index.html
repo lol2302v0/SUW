@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src='../common/mdui/js/mdui.min.js'></script>
+	<link href='../common/mdui/css/mdui.min.css' rel='stylesheet'>
+	<script src='../common/js/FileSaver.js'></script>
+	<script src='../common/js/typeUtil.js'></script>
+	<script src='../common/js/jsonUtil.js'></script>
+	<script src='../common/js/toolUtil.js'></script>
+	<script src='../common/js/jquery-3.4.1.min.js'></script>
+	<script src='./scripts-crypt.js'></script>
+	<link href='./styles.css' rel='stylesheet'>
+	<title>SPC-Util Map-Designer</title>
+</head>
+<body class='mdui-theme-layout-dark mdui-theme-primary-teal mdui-theme-accent-blue mdui-appbar-with-toolbar mdui-appbar-with-tab mdui-drawer-body-left mdui-drawer-body-right'>
+	<div class='mdui-dialog' id='dialog-docs-theme'>
+		<div class='mdui-dialog-title'>Color</div>
+		<div class='mdui-dialog-content'>
+			<p class='mdui-typo-title'>Theme</p>
+			<div class='mdui-row-xs-1 mdui-row-sm-2 mdui-row-md-3'>
+				<div class='mdui-col'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-layout' value='' />
+						<i class='mdui-radio-icon'></i>
+						Light
+					</label>
+				</div>
+				<div class='mdui-col'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-layout' value='dark' checked />
+						<i class='mdui-radio-icon'></i>
+						Dark
+					</label>
+				</div>
+			</div>
+			<p class='mdui-typo-title mdui-text-color-theme'>Primary</p>
+			<form class='mdui-row-xs-1 mdui-row-sm-2 mdui-row-md-3'>
+				<div class='mdui-col mdui-text-color-amber'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-primary' value='amber' />
+						<i class='mdui-radio-icon'></i>
+						Amber
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-blue'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-primary' value='blue' />
+						<i class='mdui-radio-icon'></i>
+						Blue
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-blue-grey'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-primary' value='blue-grey' />
+						<i class='mdui-radio-icon'></i>
+						Blue Grey
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-brown'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-primary' value='brown' />
+						<i class='mdui-radio-icon'></i>
+						Brown
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-cyan'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-primary' value='cyan' />
+						<i class='mdui-radio-icon'></i>
+						Cyan
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-deep-orange'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-primary' value='deep-orange' />
+						<i class='mdui-radio-icon'></i>
+						Deep Orange
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-deep-purple'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-primary' value='deep-purple' />
+						<i class='mdui-radio-icon'></i>
+						Deep Purple
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-green'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-primary' value='green' />
+						<i class='mdui-radio-icon'></i>
+						Green
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-grey'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-primary' value='grey' />
+						<i class='mdui-radio-icon'></i>
+						Grey
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-indigo'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-primary' value='indigo' />
+						<i class='mdui-radio-icon'></i>
+						Indigo
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-light-blue'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-primary' value='light-blue' />
+						<i class='mdui-radio-icon'></i>
+						Light Blue
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-light-green'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-primary' value='light-green' />
+						<i class='mdui-radio-icon'></i>
+						Light Green
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-lime'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-primary' value='lime' />
+						<i class='mdui-radio-icon'></i>
+						Lime
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-orange'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-primary' value='orange' />
+						<i class='mdui-radio-icon'></i>
+						Orange
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-pink'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-primary' value='pink' />
+						<i class='mdui-radio-icon'></i>
+						Pink
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-purple'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-primary' value='purple' />
+						<i class='mdui-radio-icon'></i>
+						Purple
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-red'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-primary' value='red' />
+						<i class='mdui-radio-icon'></i>
+						Red
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-teal'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-primary' value='teal' checked />
+						<i class='mdui-radio-icon'></i>
+						Teal
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-yellow'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-primary' value='yellow' />
+						<i class='mdui-radio-icon'></i>
+						Yellow
+					</label>
+				</div>
+			</form>
+			<p class='mdui-typo-title mdui-text-color-theme-accent'>Accent</p>
+			<form class='mdui-row-xs-1 mdui-row-sm-2 mdui-row-md-3'>
+				<div class='mdui-col mdui-text-color-amber'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-accent' value='amber' />
+						<i class='mdui-radio-icon'></i>
+						Amber
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-blue'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-accent' value='blue' checked />
+						<i class='mdui-radio-icon'></i>
+						Blue
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-cyan'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-accent' value='cyan' />
+						<i class='mdui-radio-icon'></i>
+						Cyan
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-deep-orange'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-accent' value='deep-orange' />
+						<i class='mdui-radio-icon'></i>
+						Deep Orange
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-deep-purple'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-accent' value='deep-purple' />
+						<i class='mdui-radio-icon'></i>
+						Deep Purple
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-green'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-accent' value='green' />
+						<i class='mdui-radio-icon'></i>
+						Green
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-indigo'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-accent' value='indigo' />
+						<i class='mdui-radio-icon'></i>
+						Indigo
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-light-blue'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-accent' value='light-blue' />
+						<i class='mdui-radio-icon'></i>
+						Light Blue
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-light-green'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-accent' value='light-green' />
+						<i class='mdui-radio-icon'></i>
+						Light Green
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-lime'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-accent' value='lime' />
+						<i class='mdui-radio-icon'></i>
+						Lime
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-orange'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-accent' value='orange' />
+						<i class='mdui-radio-icon'></i>
+						Orange
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-pink'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-accent' value='pink' />
+						<i class='mdui-radio-icon'></i>
+						Pink
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-purple'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-accent' value='purple' />
+						<i class='mdui-radio-icon'></i>
+						Purple
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-red'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-accent' value='red' />
+						<i class='mdui-radio-icon'></i>
+						Red
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-teal'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-accent' value='teal' />
+						<i class='mdui-radio-icon'></i>
+						Teal
+					</label>
+				</div>
+				<div class='mdui-col mdui-text-color-yellow'>
+					<label class='mdui-radio mdui-m-b-1'>
+						<input type='radio' name='doc-theme-accent' value='yellow' />
+						<i class='mdui-radio-icon'></i>
+						Yellow
+					</label>
+				</div>
+			</form>
+		</div>
+		<div class='mdui-divider'></div>
+		<div class='mdui-dialog-actions'>
+			<button class='mdui-btn mdui-ripple mdui-float-left' mdui-dialog-cancel>Default</button>
+			<button class='mdui-btn mdui-ripple' mdui-dialog-confirm>OK</button>
+		</div>
+	</div>
+	<div class='mdui-appbar mdui-appbar-fixed'>
+		<div class='mdui-toolbar mdui-color-theme'>
+			<button class='mdui-btn mdui-btn-icon mdui-ripple' _a='ctrl' _b='drawer_toggle' _c='left' mdui-tooltip='{ content: "toggle drawer" }' mdui-drawer='{ target: "[_a=drawer][_b=left]" }'>
+				<i class='mdui-icon material-icons'>menu</i>
+			</button>
+			<img src='../China.png' style='width: 36px; height: 36px;'></img>
+			<p class='mdui-typo-title'>SPC-Util : Map-Designer</p>
+			<button class='mdui-btn mdui-btn-icon mdui-ripple' _a='ctrl' _b='about' mdui-tooltip='{ content: "about" }'>
+				<i class='mdui-icon material-icons'>info_outline</i>
+			</button>
+			<button class='mdui-btn mdui-btn-icon mdui-ripple' _a='ctrl' _b='color' mdui-tooltip='{ content: "change color" }' mdui-dialog='{ target: "#dialog-docs-theme" }'>
+				<i class='mdui-icon material-icons'>color_lens</i>
+			</button>
+			<button class='mdui-btn mdui-btn-icon mdui-ripple' _a='ctrl' _b='refresh' mdui-tooltip='{ content: "refresh" }'>
+				<i class='mdui-icon material-icons'>refresh</i>
+			</button>
+			<button class='mdui-btn mdui-btn-icon mdui-ripple' _a='ctrl' _b='clean' mdui-tooltip='{ content: "clean" }'>
+				<i class='mdui-icon material-icons'>clear_all</i>
+			</button>
+			<div class='mdui-toolbar-spacer'></div>
+			<button class='mdui-btn mdui-btn-icon' mdui-tooltip='{ content: "record now" }' _a='record' _b='record'><i class='mdui-icon material-icons'>adjust</i></button>
+			<div class='mdui-p-a-1'>
+				<div style='display: inline;'>
+					<button class='mdui-btn mdui-btn-icon mdui-ripple' mdui-tooltip='{ content: "upload ripe" }' _a='ctrl' _b='upload' _c='ripe'>
+						<i class='mdui-icon material-icons'>file_upload</i>
+					</button>
+					<button class='mdui-btn mdui-btn-icon mdui-ripple' mdui-tooltip='{ content: "download ripe" }' _a='ctrl' _b='download' _c='ripe'>
+						<i class='mdui-icon material-icons'>file_download</i>
+					</button>
+				</div>
+			</div>
+			<div class='mdui-p-x-1' style='overflow: visible;'>
+				<label class='mdui-checkbox' mdui-tooltip='{ content: "linear map" }'>
+					<input type='checkbox' _a='ctrl' _b='linear_map'></input>
+					<i class='mdui-checkbox-icon'></i>
+					<i class='mdui-icon material-icons'>linear_scale</i>
+				</label>
+			</div>
+			<div class='mdui-p-x-1' style='overflow: visible;'>
+				<label class='mdui-checkbox' mdui-tooltip='{ content: "guide line" }'>
+					<input type='checkbox' _a='ctrl' _b='guide_line'></input>
+					<i class='mdui-checkbox-icon'></i>
+					<i class='mdui-icon material-icons'>vertical_align_center</i>
+				</label>
+			</div>
+			<button class='mdui-btn mdui-btn-icon mdui-ripple' _a='ctrl' _b='drawer_toggle' _c='right' mdui-tooltip='{ content: "toggle drawer" }' mdui-drawer='{ target: "[_a=drawer][_b=right]" }'>
+				<i class='mdui-icon material-icons'>menu</i>
+			</button>
+		</div>
+		<div id='_interface_select_div' class='mdui-tab mdui-color-theme' mdui-tab='{ loop: true }'>
+			<a href='#_entry' class='mdui-ripple' mdui-tooltip='{ content: "entry" }'><i class="mdui-icon material-icons">apps</i></a>
+			<a href='#_map_info' class='mdui-ripple' mdui-tooltip='{ content: "map info" }'><i class="mdui-icon material-icons">create</i></a>
+			<a href='#_map_view' class='mdui-ripple' mdui-tooltip='{ content: "map view" }'><i class="mdui-icon material-icons">bubble_chart</i></a>
+		</div>
+	</div>
+	<div _a='drawer' _b='left' class='mdui-drawer mdui-shadow-16'>
+		<div _a='map' _b='item_info' _c='shell' class='mdui-container mdui-p-y-2'>
+			<div _a='map' _b='item_info' _c='piece_shell' style='display: none;'>
+				<div class='mdui-row mdui-valign'>
+					<i class='mdui-col-xs-2 mdui-icon material-icons'>terrain</i>
+					<span class='mdui-col-xs-6 mdui-typo-title-opacity' _a='map' _b='item_info' _c='piece' _d='__idx'></span>
+					<button class='mdui-col-xs-2 mdui-btn mdui-btn-icon' _a='map' _b='item_info' _c='piece' _d='__delete'>
+						<i class='mdui-icon material-icons'>delete</i>
+					</button>
+					<button class='mdui-col-xs-2 mdui-btn mdui-btn-icon' _a='map' _b='item_info' _c='piece' _d='__copy'>
+						<i class='mdui-icon material-icons'>content_copy</i>
+					</button>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-6 mdui-textfield' style='overflow: visible;'>
+						<label class='mdui-textfield-label'>ref-type</label>
+						<select class='mdui-select' mdui-select='{ position: "bottom" }' _a='map' _b='item_info' _c='piece' _d='ref_type'>
+							<option value='undef'>undef</option>
+							<option value='img'>img</option>
+							<option value='anim'>anim</option>
+						</select>
+					</div>
+					<div class='mdui-col-xs-6 mdui-textfield'>
+						<label class='mdui-textfield-label'>ref-idx</label>
+						<input class='mdui-textfield-input' type='number' step='1' min='1' max='99' _a='map' _b='item_info' _c='piece' _d='ref_idx'></input>
+					</div>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-6 mdui-textfield'>
+						<label class='mdui-textfield-label'>parallax</label>
+						<input class='mdui-textfield-input' type='number' step='1' min='-4' max='10' _a='map' _b='item_info' _c='piece' _d='parallax'></input>
+					</div>
+					<div class='mdui-col-xs-6 mdui-textfield'>
+						<label class='mdui-textfield-label'>layer</label>
+						<input class='mdui-textfield-input' type='number' step='1' min='-10' max='10' _a='map' _b='item_info' _c='piece' _d='layer'></input>
+					</div>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-6 mdui-textfield'>
+						<label class='mdui-textfield-label'>pos-x</label>
+						<input class='mdui-textfield-input' type='number' step='0.000001' _a='map' _b='item_info' _c='piece' _d='pos_x'></input>
+					</div>
+					<div class='mdui-col-xs-6 mdui-textfield'>
+						<label class='mdui-textfield-label'>pos-y</label>
+						<input class='mdui-textfield-input' type='number' step='0.000001' _a='map' _b='item_info' _c='piece' _d='pos_y'></input>
+					</div>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-6 mdui-textfield'>
+						<label class='mdui-textfield-label'>scale-x</label>
+						<input class='mdui-textfield-input' type='number' step='0.000001' _a='map' _b='item_info' _c='piece' _d='scale_x'></input>
+					</div>
+					<div class='mdui-col-xs-6 mdui-textfield'>
+						<label class='mdui-textfield-label'>scale-y</label>
+						<input class='mdui-textfield-input' type='number' step='0.000001' _a='map' _b='item_info' _c='piece' _d='scale_y'></input>
+					</div>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-5 mdui-textfield'>
+						<label class='mdui-textfield-label'>angle</label>
+						<input class='mdui-textfield-input' type='number' step='1' _a='map' _b='item_info' _c='piece' _d='rotate_angle'></input>
+					</div>
+					<div class='mdui-col-xs-5 mdui-textfield'>
+						<label class='mdui-textfield-label'>rate</label>
+						<input class='mdui-textfield-input' type='number' step='0.000001' _a='map' _b='item_info' _c='piece' _d='rotate_rate'></input>
+					</div>
+					<div class='mdui-col-xs-2 mdui-m-t-4'>
+						<label class='mdui-checkbox'>
+							<input class='mdui-textfield-input' type='checkbox' _a='map' _b='item_info' _c='piece' _d='rotate_flip'></input>
+							<i class='mdui-checkbox-icon'></i>
+						</label>
+					</div>
+				</div>
+			</div>
+			<div _a='map' _b='item_info' _c='event_shell' style='display: none;'>
+				<div class='mdui-row mdui-valign'>
+					<i class='mdui-col-xs-2 mdui-icon material-icons'>place</i>
+					<span class='mdui-col-xs-6 mdui-typo-title-opacity' _a='map' _b='item_info' _c='event' _d='__idx'></span>
+					<button class='mdui-col-xs-2 mdui-btn mdui-btn-icon' _a='map' _b='item_info' _c='event' _d='__delete'>
+						<i class='mdui-icon material-icons'>delete</i>
+					</button>
+					<button class='mdui-col-xs-2 mdui-btn mdui-btn-icon' _a='map' _b='item_info' _c='event' _d='__copy'>
+						<i class='mdui-icon material-icons'>content_copy</i>
+					</button>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-6 mdui-textfield'>
+						<label class='mdui-textfield-label'>pos-x</label>
+						<input class='mdui-textfield-input' type='number' step='0.000001' _a='map' _b='item_info' _c='event' _d='pos_x'></input>
+					</div>
+					<div class='mdui-col-xs-6 mdui-textfield'>
+						<label class='mdui-textfield-label'>pos-y</label>
+						<input class='mdui-textfield-input' type='number' step='0.000001' _a='map' _b='item_info' _c='event' _d='pos_y'></input>
+					</div>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-8 mdui-textfield' style='overflow: visible;'>
+						<label class='mdui-textfield-label'>type</label>
+						<select class='mdui-select' mdui-select='{ position: "bottom" }' _a='map' _b='item_info' _c='event' _d='type'>
+							<option value='none'>none</option>
+							<option value='doodad'>doodad</option>
+							<option value='path_node'>path_node</option>
+							<option value='star_gate'>star_gate</option>
+							<option value='key_gate'>key_gate</option>
+							<option value='powerup'>powerup</option>
+							<option value='upgrade'>upgrade</option>
+							<option value='giftbox'>giftbox</option>
+							<option value='pinata'>pinata</option>
+							<option value='plantbox'>plantbox</option>
+							<option value='plant'>plant</option>
+							<option value='level'>level</option>
+						</select>
+					</div>
+					<div class='mdui-col-xs-4 mdui-textfield'>
+						<label class='mdui-textfield-label'>id</label>
+						<input class='mdui-textfield-input' type='number' step='1' min='0' max='65536' _a='map' _b='item_info' _c='event' _d='id'></input>
+					</div>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-12 mdui-textfield'>
+						<label class='mdui-textfield-label'>name</label>
+						<input class='mdui-textfield-input' type='text' list='_datalist_event_name' _a='map' _b='item_info' _c='event' _d='name'></input>
+					</div>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-12 mdui-textfield'>
+						<label class='mdui-textfield-label'>parent</label>
+						<input class='mdui-textfield-input' type='text' list='_datalist_event_name' _a='map' _b='item_info' _c='event' _d='parent'></input>
+					</div>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-12 mdui-textfield'>
+						<label class='mdui-textfield-label'>unlocked-from</label>
+						<input class='mdui-textfield-input' type='text' list='_datalist_event_name' _a='map' _b='item_info' _c='event' _d='unlocked_from'></input>
+					</div>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-12 mdui-textfield'>
+						<label class='mdui-textfield-label'>visible-from</label>
+						<input class='mdui-textfield-input' type='text' list='_datalist_event_name' _a='map' _b='item_info' _c='event' _d='visible_from'></input>
+					</div>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-12'>
+						<label class='mdui-checkbox'>
+							auto-visible
+							<input class='mdui-textfield-input' type='checkbox' _a='map' _b='item_info' _c='event' _d='auto_visible'></input>
+							<i class='mdui-checkbox-icon'></i>
+						</label>
+					</div>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-12'>
+						<label class='mdui-checkbox'>
+							is-challenge
+							<input class='mdui-textfield-input' type='checkbox' _a='map' _b='item_info' _c='event' _d='is_challenge'></input>
+							<i class='mdui-checkbox-icon'></i>
+						</label>
+					</div>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-12 mdui-textfield'>
+						<label class='mdui-textfield-label'>gate : cost</label>
+						<input class='mdui-textfield-input' type='number' step='1' min='0' max='4294967295' _a='map' _b='item_info' _c='event' _d='_gate_cost'></input>
+					</div>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-12 mdui-textfield'>
+						<label class='mdui-textfield-label'>upgrade : type</label>
+						<input class='mdui-textfield-input' type='text' list='_datalist_event_upgrade' _a='map' _b='item_info' _c='event' _d='_upgrade_type'></input>
+					</div>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-12 mdui-textfield'>
+						<label class='mdui-textfield-label'>plant : type</label>
+						<input class='mdui-textfield-input' type='text' list='_datalist_event_plant' _a='map' _b='item_info' _c='event' _d='_plant_type'></input>
+					</div>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-12 mdui-textfield'>
+						<label class='mdui-textfield-label'>level : data</label>
+						<input class='mdui-textfield-input' type='text' list='_datalist_event_level_data_option' _a='map' _b='item_info' _c='event' _d='_level_data'></input>
+					</div>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-12 mdui-textfield' style='overflow: visible;'>
+						<label class='mdui-textfield-label'>level : type</label>
+						<select class='mdui-select' mdui-select='{ position: "bottom" }' _a='map' _b='item_info' _c='event' _d='_level_type'>
+							<option value='normal'>normal</option>
+							<option value='minigame'>minigame</option>
+							<option value='miniboss'>miniboss</option>
+							<option value='nonfinalboss'>nonfinalboss</option>
+							<option value='boss'>boss</option>
+							<option value='danger'>danger</option>
+						</select>
+					</div>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-12 mdui-textfield'>
+						<label class='mdui-textfield-label'>level : text</label>
+						<input class='mdui-textfield-input' type='text' _a='map' _b='item_info' _c='event' _d='_level_text'></input>
+					</div>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-12 mdui-textfield'>
+						<label class='mdui-textfield-label'>level : narr_unlocked</label>
+						<input class='mdui-textfield-input' type='text' list='_datalist_event_level_narr' _a='map' _b='item_info' _c='event' _d='_level_narr_unlocked'></input>
+					</div>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-12 mdui-textfield'>
+						<label class='mdui-textfield-label'>level : narr_completed</label>
+						<input class='mdui-textfield-input' type='text' list='_datalist_event_level_narr' _a='map' _b='item_info' _c='event' _d='_level_narr_completed'></input>
+					</div>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-12 mdui-textfield' style='overflow: visible;'>
+						<label class='mdui-textfield-label'>level : tutorial</label>
+						<select class='mdui-select' mdui-select='{ position: "auto" }' _a='map' _b='item_info' _c='event' _d='_level_tutorial'></select>
+					</div>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-12 mdui-textfield' style='overflow: visible;'>
+						<label class='mdui-textfield-label'>level : tutorial_when</label>
+						<select class='mdui-select' mdui-select='{ position: "auto" }' _a='map' _b='item_info' _c='event' _d='_level_tutorial_when'></select>
+					</div>
+				</div>
+				<div class='mdui-row'>
+					<div class='mdui-col-xs-12 mdui-textfield'>
+						<label class='mdui-textfield-label'>level : toggle</label>
+						<input class='mdui-textfield-input' type='text' _a='map' _b='item_info' _c='event' _d='_level_toggle'></input>
+					</div>
+				</div>
+			</div>
+			<div _a='map' _b='item_info' _c='multi_shell' style='display: none;'>
+				<div class='mdui-row mdui-valign'>
+					<i class='mdui-col-xs-2 mdui-icon material-icons'>select_all</i>
+					<span class='mdui-col-xs-6 mdui-typo-title-opacity' _a='map' _b='item_info' _c='multi' _d='__cnt'></span>
+					<button class='mdui-col-xs-2 mdui-btn mdui-btn-icon' _a='map' _b='item_info' _c='multi' _d='__delete'>
+						<i class='mdui-icon material-icons'>delete</i>
+					</button>
+					<button class='mdui-col-xs-2 mdui-btn mdui-btn-icon' _a='map' _b='item_info' _c='multi' _d='__copy'>
+						<i class='mdui-icon material-icons'>content_copy</i>
+					</button>
+				</div>
+				<div class='mdui-m-y-2' _a='map' _b='item_info' _c='multi' _d='__content'></div>
+			</div>
+		</div>
+	</div>
+	<div _a='drawer' _b='right' class='mdui-drawer mdui-drawer-right mdui-shadow-16'>
+		<div _a='map' _b='item_shop' _c='shell'>
+			<div id='_map_item_shop_select' class='mdui-tab mdui-tab-full-width' mdui-tab='{ loop: true }'>
+				<a href='#_map_item_shop_piece_img' class='mdui-ripple' style='min-width: 0;' mdui-tooltip='{ content: "piece - img" }'>
+					<i class='mdui-icon material-icons'>photo_library</i>
+				</a>
+				<a href='#_map_item_shop_piece_anim' class='mdui-ripple' style='min-width: 0;' mdui-tooltip='{ content: "piece - anim" }'>
+					<i class='mdui-icon material-icons'>video_library</i>
+				</a>
+				<a href='#_map_item_shop_event' class='mdui-ripple' style='min-width: 0;' mdui-tooltip='{ content: "event" }'>
+					<i class='mdui-icon material-icons'>place</i>
+				</a>
+			</div>
+			<div _a='map' _b='item_shop' _c='piece_img' id='_map_item_shop_piece_img'></div>
+			<div _a='map' _b='item_shop' _c='piece_anim' id='_map_item_shop_piece_anim'></div>
+			<div _a='map' _b='item_shop' _c='event' id='_map_item_shop_event'></div>
+		</div>
+	</div>
+	<div class='mdui-container-fluid mdui-m-t-2'>
+		<div id='_entry' class='mdui-container-fluid'>
+			<div class='mdui-p-a-1 mdui-shadow-2'>
+				<div>
+					<input id='_input_file_map_raw' type='file' style='display: none;'></input>
+					<input id='_input_file_map_ripe' type='file' style='display: none;'></input>
+				</div>
+				<div class='mdui-text-center'>
+					<button class='mdui-btn mdui-btn-dense mdui-ripple' _a='ctrl' _b='upload' _c='raw'>
+						<i class='mdui-icon material-icons'>file_upload</i>
+						raw
+					</button>
+					<button class='mdui-btn mdui-btn-dense mdui-ripple' _a='ctrl' _b='upload' _c='ripe'>
+						<i class='mdui-icon material-icons'>file_upload</i>
+						ripe
+					</button>
+				</div>
+				<div class='mdui-text-center'>
+					<button class='mdui-btn mdui-btn-dense mdui-ripple' _a='ctrl' _b='download' _c='raw'>
+						<i class='mdui-icon material-icons'>file_download</i>
+						raw
+					</button>
+					<button class='mdui-btn mdui-btn-dense mdui-ripple' _a='ctrl' _b='download' _c='ripe'>
+						<i class='mdui-icon material-icons'>file_download</i>
+						ripe
+					</button>
+				</div>
+				<div class='mdui-text-center'>
+					<div class='mdui-p-a-1'>
+						<span>ResID</span>
+						<div class='mdui-m-l-1' style='display: inline;'>
+							<select class='mdui-select' mdui-select='{ position: "bottom" }' _a='ctrl' _b='res_select'>
+								<option value='1536'>1536</option>
+								<option value='768'>768</option>
+								<option value='384'>384</option>
+								<option value='1080'>1080</option>
+								<option value='960'>960</option>
+								<option value='640'>640</option>
+								<option value='320'>320</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class='mdui-m-t-2 mdui-p-a-2 mdui-shadow-8' _a='record' _b='shell'>
+				<div>
+					<span class='mdui-typo-title'>Record</span>
+					<div style='display: inline; float: right;'>
+						<button class='mdui-btn mdui-btn-icon'><i class='mdui-icon material-icons' mdui-tooltip='{ content: "clear all" }' _a='record' _b='clear'>clear_all</i></button>
+						<button class='mdui-btn mdui-btn-icon'><i class='mdui-icon material-icons' mdui-tooltip='{ content: "record now" }' _a='record' _b='record'>adjust</i></button>
+					</div>
+				</div>
+				<div class='mdui-m-t-2'>
+					<ul class='mdui-p-a-1 mdui-shadow-2 mdui-list mdui-list-dense' _a='record' _b='list'></ul>
+				</div>
+			</div>
+		</div>
+		<div id='_map_info' class='mdui-container-fluid'>
+			<table class='mdui-table'>
+				<tbody>
+					<tr>
+						<td>id</td>
+						<td>
+							<div class='mdui-textfield'>
+								<input class='mdui-textfield-input' _a='ctrl' _b='map' _c='info' _d='id' type='number' step='1' min='0' max='255'></input>
+							</div>
+						</td>
+						<td>name</td>
+						<td>
+							<div class='mdui-textfield'>
+								<input class='mdui-textfield-input' _a='ctrl' _b='map' _c='info' _d='name' type='text'></input>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>pos</td>
+						<td style='display: flex;'>
+							<div class='mdui-textfield' style='width: 50%;'>
+								<input  class='mdui-textfield-input' _a='ctrl' _b='map' _c='info' _d='pos_x' type='number' step='0.0000001'></input>
+							</div>
+							<div class='mdui-textfield mdui-m-l-2'  style='width: 50%;'>
+								<input class='mdui-textfield-input' _a='ctrl' _b='map' _c='info' _d='pos_y' type='number' step='0.0000001'></input>
+							</div>
+						</td>
+						<td>size</td>
+						<td style='display: flex;'>
+							<div class='mdui-textfield' style='width: 50%;'>
+								<input class='mdui-textfield-input' _a='ctrl' _b='map' _c='info' _d='size_w' type='number' step='0.0000001' min='0'></input>
+							</div>
+							<div class='mdui-textfield mdui-m-l-2' style='width: 50%;'>
+								<input class='mdui-textfield-input' _a='ctrl' _b='map' _c='info' _d='size_h' type='number' step='0.0000001' min='0'></input>
+							</div>
+						</td>
+						<td>
+						</td>
+					</tr>
+					<tr>
+						<td>resGroupID</td>
+						<td colspan='3'>
+							<div class='mdui-textfield'>
+								<input class='mdui-textfield-input' _a='ctrl' _b='map' _c='info' _d='res_group_id' type='number' step='1' min='0' max='65535'></input>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>version</td>
+						<td>
+							<div class='mdui-textfield'>
+								<input class='mdui-textfield-input' _a='ctrl' _b='map' _c='info' _d='version' type='number' step='1' min='0' max='255'></input>
+							</div>
+						</td>
+						<td>creationTime</td>
+						<td>
+							<div class='mdui-textfield'>
+								<input class='mdui-textfield-input' _a='ctrl' _b='map' _c='info' _d='creation_time' type='number' step='1' min='0'></input>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div id='_map_view' class='mdui-container-fluid'>
+			<div class='mdui-shadow-12' _a='map' _b='shell'>
+				<div _a='map' _b='bg' _c='color'></div>
+				<div _a='map' _b='bg' _c='image'></div>
+				<div _a='map' _b='layer_shell'></div>
+				<div _a='map' _b='guideline_shell'></div>
+				<div _a='map' _b='select_rect'></div>
+			</div>
+			<div class='mdui-m-t-2 mdui-p-a-2 mdui-shadow-12'>
+				<div class='mdui-row mdui-valign'>
+					<div class='mdui-col-xs-9'>
+						<div class='mdui-row mdui-valign'>
+							<div class='mdui-col-xs-2' mdui-tooltip='{ content: "horizon position" }'>
+								<i class='mdui-icon material-icons'>swap_horiz</i>
+								<span class='mdui-m-l-1' _a='ctrl' _b='map' _c='view_show' _d='pos_x'></span>
+							</div>
+							<div class='mdui-col-xs-10'>
+								<label class='mdui-slider mdui-slider-discrete mdui-m-r-1' mdui-tooltip='{ content: "horizon position" }'>
+									<input _a='ctrl' _b='map' _c='view' _d='pos_x' type='range' step='0.1' min='0' max='100'></input>
+								</label>
+							</div>
+						</div>
+						<div class='mdui-row mdui-valign'>
+							<div class='mdui-col-xs-2' mdui-tooltip='{ content: "vertical position" }'>
+								<i class='mdui-icon material-icons'>swap_vert</i>
+								<span class='mdui-m-l-1' _a='ctrl' _b='map' _c='view_show' _d='pos_y'></span>
+							</div>
+							<div class='mdui-col-xs-10'>
+								<label class='mdui-slider mdui-slider-discrete mdui-m-r-1' mdui-tooltip='{ content: "vertical position" }'>
+									<input _a='ctrl' _b='map' _c='view' _d='pos_y' type='range' step='0.1' min='0' max='100'></input>
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class='mdui-col-xs-2'>
+						<div class='mdui-row'>
+							<div class='mdui-col-xs-12'>
+								<label class='mdui-slider mdui-slider-discrete mdui-m-r-1' mdui-tooltip='{ content: "zoom out" }'>
+									<input _a='ctrl' _b='map' _c='view' _d='scale' _e='out' type='range' step='0.01' min='0' max='1'></input>
+								</label>
+							</div>
+						</div>
+						<div class='mdui-row'>
+							<div class='mdui-col-xs-12'>
+								<label class='mdui-slider mdui-slider-discrete mdui-m-r-1' mdui-tooltip='{ content: "zoom in" }'>
+									<input _a='ctrl' _b='map' _c='view' _d='scale' _e='in' type='range' step='0.01' min='1' max='10'></input>
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class='mdui-col-xs-1' mdui-tooltip='{ content: "scale" }'>
+						<i class='mdui-icon material-icons'>zoom_out_map</i>
+						<span class='mdui-m-l-1' _a='ctrl' _b='map' _c='view_show' _d='scale'></span>
+					</div>
+				</div>
+				<div class='mdui-row mdui-valign'>
+					<div class='mdui-col-xs-1' mdui-tooltip='{ content: "layer display" }'>
+						<i class='mdui-icon material-icons'>layers</i>
+					</div>
+					<div class='mdui-col-xs-7'>
+						<label class='mdui-slider mdui-slider-discrete' mdui-tooltip='{ content: "piece layer" }'>
+							<input _a='ctrl' _b='map' _c='view' _d='layer' type='range' step='1' min='-10' max='10' value='0'></input>
+						</label>
+					</div>
+					<div class='mdui-col-xs-1'>
+						<label class='mdui-radio' mdui-tooltip='{ content: "focus piece" }' style='white-space: nowrap;'>
+							<input _a='ctrl' _b='map' _c='view' _d='layer_focus' type='radio' name='_radio_group_layer_display'></input>
+							<i class='mdui-radio-icon'></i>
+							<i class='mdui-icon material-icons'>filter_tilt_shift</i>
+							<span class='mdui-m-l-1' _a='ctrl' _b='map' _c='view_show' _d='layer'></span>
+						</label>
+					</div>
+					<div class='mdui-col-xs-1'>
+						<label class='mdui-radio' mdui-tooltip='{ content: "show piece" }'>
+							<input _a='ctrl' _b='map' _c='view' _d='layer_show' type='radio' name='_radio_group_layer_display'></input>
+							<i class='mdui-radio-icon'></i>
+							<i class='mdui-icon material-icons'>visibility</i>
+						</label>
+					</div>
+					<div class='mdui-col-xs-1'>
+						<label class='mdui-radio' mdui-tooltip='{ content: "hide piece" }'>
+							<input _a='ctrl' _b='map' _c='view' _d='layer_hide' type='radio' name='_radio_group_layer_display'></input>
+							<i class='mdui-radio-icon'></i>
+							<i class='mdui-icon material-icons'>visibility_off</i>
+						</label>
+					</div>
+					<div class='mdui-col-xs-1'>
+						<label class='mdui-checkbox' mdui-tooltip='{ content: "show event" }'>
+							<input _a='ctrl' _b='map' _c='view' _d='layer_event' type='checkbox'></input>
+							<i class='mdui-checkbox-icon'></i>
+							<i class='mdui-icon material-icons'>place</i>
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class='mdui-dialog' _a='record' _b='shell'>
+		<div class='mdui-dialog-title'>
+			<span>Record</span>
+			<div style='display: inline; float: right;'>
+				<button class='mdui-btn mdui-btn-icon'><i class='mdui-icon material-icons' mdui-tooltip='{ content: "clear all" }' _a='record' _b='clear'>clear_all</i></button>
+				<button class='mdui-btn mdui-btn-icon'><i class='mdui-icon material-icons' mdui-tooltip='{ content: "record now" }' _a='record' _b='record'>adjust</i></button>
+			</div>
+		</div>
+		<div class='mdui-dialog-content'>
+			<ul class='mdui-p-a-1 mdui-shadow-2 mdui-list mdui-list-dense' _a='record' _b='list'></ul>
+		</div>
+		<div class='mdui-divider'></div>
+		<div class='mdui-dialog-actions'>
+			<button class='mdui-btn mdui-ripple' mdui-dialog-close>Close</button>
+		</div>
+	</div>
+	<div id='_datalist_shell' style='display: none;'>
+		<datalist id='_datalist_event_name'></datalist>
+		<datalist id='_datalist_event_upgrade'></datalist>
+		<datalist id='_datalist_event_plant'></datalist>
+		<datalist id='_datalist_event_plant_only_cur_world'></datalist>
+		<datalist id='_datalist_event_level_data_option'></datalist>
+		<datalist id='_datalist_event_level_narr'></datalist>
+	</div>
+</body>
+</html>

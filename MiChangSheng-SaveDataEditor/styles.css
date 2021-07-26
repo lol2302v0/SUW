@@ -1,0 +1,8 @@
+* {
+  user-select: none;
+}
+
+.mdui-drawer {
+  overflow-y: scroll;
+}
+

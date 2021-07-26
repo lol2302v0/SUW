@@ -1,0 +1,21 @@
+* {
+  user-select: none;
+}
+
+.mdui-drawer {
+  overflow-y: scroll;
+}
+
+#_anim_div_shell {
+  position: relative;
+  width: 100%;
+  height: 840px;
+  overflow: hidden;
+}
+
+#_anim_div {
+  position: absolute;
+}
+#_anim_div img {
+  position: absolute;
+}
